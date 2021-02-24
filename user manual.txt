@@ -1,0 +1,46 @@
+Input files:
+1. Mass and stiff matrices for quadrature-free DG method in the reference element:
+a. Mass.txt
+b. inv_ma.txt
+c. mdx.txt
+d. mdy.txt
+e. mdz.txt
+f. MintF.txt;
+g. MFace.txt
+
+2. Mesh files obtained from mesh generation tools (2 files):
+a, etov3D.txt;
+b,votex3D.txt.
+
+Output files:
+1. v1_03 (for Tecplot 360 drawing) to generate Fig.13
+2. wave1.txt (for waveform plot) to generate Fig.14
+
+Source code:
+1. test_metis.f90
+2. before_3D.f90
+3. a3Dp_6_doub.f90
+ a. run t_f=0.3D0 to obtain the snapshot at T = 0.3 s.
+ b. run t_f=0.5D0 to obtain the waveforms at T = 0.5 s.
+
+Running:
+1. Use Metis to divide the meshes for n processors
+Code：test_metis.f90
+Resulting files: 
+epart
+
+2. Generate the files for the element connection matrices of the meshes, and the area of the four faces, volume and diameter of the inscribed sphere for each tetrahedron, and two auxiliary files. 
+Code: before_3D.f90
+Resulting files: 
+ftoe1.txt; ftof1.txt; vtoh1.txt; 
+vsd1.txt; 
+velo1.txt; 
+n1.txt; n7.txt
+
+3. Run the main program. In this test, we use 50 processes to iterate over time to get the final result.
+Code: a3Dp_6_doub.f90
+Resulting files: 
+v1_03     (for Tecplot 360 drawing)
+wave1.txt  (for waveform plot)
+
+
